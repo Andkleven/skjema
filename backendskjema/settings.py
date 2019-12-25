@@ -33,7 +33,7 @@ else:
 DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 
 
-ALLOWED_HOSTS = ['backendskjema.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['hidden-falls-58187.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
