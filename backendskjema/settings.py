@@ -30,8 +30,8 @@ else:
     SECRET_KEY = "ce91d256bba26a1904f7b18df32f951a36d2f8fab747c11d80"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
-
+#DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
+DEBUG = True
 
 ALLOWED_HOSTS = ['hidden-falls-58187.herokuapp.com', '127.0.0.1']
 

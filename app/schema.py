@@ -14,19 +14,15 @@ from .models import CreateProject
 
 
 
-class CreateProjectFilter(django_filters.FilterSet):
+class CreateProjectNode(DjangoObjectType):
     class Meta:
         model = CreateProject
         fields = ('__all__')
 
 
 class Query(graphene.ObjectType):
-    user_profile                        = graphene.List(UserProfileNode, user = graphene.String())
     create_project                      = graphene.List(CreateProjectNode,
                                                         id=graphene.Int())
-    def resolve_user_profile(root, info, user, **input):
-    # login(info)
-    return UserProfile.objects.filter(user__username=user).order_by('id')
 
     def resolve_create_project(root, info, id=False, **input):
         # login(info)
@@ -102,3 +98,6 @@ class DeleteCreateProject(graphene.Mutation):
         create_project.delete()
         return DeleteCreateProject(deletet=True)
 
+class Mutation(graphene.ObjectType):
+    create_project                              = CreateProjectGraphql.Field()
+    create_project_delete                       = DeleteCreateProject.Field()
