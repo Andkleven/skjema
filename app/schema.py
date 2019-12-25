@@ -62,17 +62,6 @@ class CreateProjectGraphql(graphene.Mutation):
         # login(info)   
         if id:
             create_project = CreateProject.objects.filter(pk=id).order_by('id')
-            old_create_project = create_project.get().data
-            if 2 < len(old_create_project): 
-                old_number_of_categorys = json.loads(old_create_project)['numberOfCategorys']
-                new_number_of_categorys = json.loads(data)['numberOfCategorys']
-                if int(new_number_of_categorys) < int(old_number_of_categorys):
-                    categorys = Category.objects.filter(create_project__id=id).order_by('id').order_by('id')
-                    for i in range(int(old_number_of_categorys)-1, int(new_number_of_categorys)-1, -1):
-                        try:
-                            categorys[i].delete()
-                        except:
-                            pass
             data = merge_data(create_project, data)
             create_project.update(data=data, **input)
             return CreateProjectGraphql(new=create_project.get())
